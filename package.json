@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jlg777/Backend-TS-alumnos-profesores/issues"
   },
-  "homepage": "https://github.com/jlg777/Backend-TS-alumnos-profesores#readme"
+  "homepage": "https://github.com/jlg777/Backend-TS-alumnos-profesores#readme",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
 }
