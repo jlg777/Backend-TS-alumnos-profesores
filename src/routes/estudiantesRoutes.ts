@@ -1,8 +1,7 @@
 import express from "express";
+import estudiantesControllers from "../controllers/estudiantesControllers";
 const estudiantesRoutes = express.Router()
 
-estudiantesRoutes.get('/', (req, res) => {
-    res.send('¡EstudianteRoutes!');
-  });
+estudiantesRoutes.get('/', estudiantesControllers.consultar);
 
 export default estudiantesRoutes;
