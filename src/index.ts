@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   });
 
 // Registrar el router con una ruta base '/api'
-app.use('/curso', cursoRoutes);
+app.use('/cursos', cursoRoutes);
 app.use('/estudiantes', estudiantesRoutes);
 app.use('/profesores', profesoresRoutes);
 
