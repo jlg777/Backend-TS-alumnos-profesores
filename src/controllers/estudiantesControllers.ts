@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
+import { Estudiante } from "../models/estudianteModels";
 
 class EstudiantesControllers {
     constructor() {}
 
-    consultar(req: Request, res: Response) {
+    async consultar(req: Request, res: Response) {
         try {
-            res.send('Estudiantes Controllers')
+            const data = await Estudiante.find();
+            res.status(200).json({data});
+            //res.send('Estudiantes Controllers')
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
@@ -18,9 +21,11 @@ class EstudiantesControllers {
         }
     }
 
-    ingresar(req: Request, res: Response) {
+    async ingresar(req: Request, res: Response) {
+        //console.log(req.body)
         try {
-            res.send(' Ingreso Estudiantes Controllers')
+            const registro = await Estudiante.save(req.body) 
+            res.status(201).json(registro);
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
@@ -33,10 +38,14 @@ class EstudiantesControllers {
         }
     }
 
-    consultardetalle(req: Request, res: Response) {
+    async consultardetalle(req: Request, res: Response) {
         const { id } = req.params;
         try {
-            res.send(`Estudiante Controllers ${id}`)
+            const registro = await Estudiante.findOneBy({id: Number(id)});
+            if(!registro){
+                throw new Error (`No se encuentra el id ${id}`)
+            }
+            res.status(200).json(registro)
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
@@ -49,10 +58,16 @@ class EstudiantesControllers {
         }
     }
 
-    actualizarestudiante(req: Request, res: Response) {
+    async actualizarestudiante(req: Request, res: Response) {
         const { id } = req.params;
         try {
-            res.send(`Modificar Estudiante Controllers ${id}`)
+            const registro = await Estudiante.findOneBy({ id: Number(id) });
+            if (!registro) {
+                throw new Error('Estudiante no encontrado');
+            }
+            await Estudiante.update({ id: Number(id) }, req.body);
+            const registroActualizado = await Estudiante.findOneBy({ id: Number(id) });
+            res.status(200).json(registroActualizado);
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
@@ -65,10 +80,15 @@ class EstudiantesControllers {
         }
     }
 
-    borrarestudiante(req: Request, res: Response) {
+    async borrarestudiante(req: Request, res: Response) {
         const { id } = req.params;
         try {
-            res.send(`Borrar Estudiante Controllers ${id}`)
+            const registro = await Estudiante.findOneBy({ id: Number(id) });
+            if (!registro) {
+                throw new Error('Estudiante no encontrado');
+            }
+            await Estudiante.delete({ id: Number(id) });
+            res.status(204);
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
