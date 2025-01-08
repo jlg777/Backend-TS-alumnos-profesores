@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('estudiantes')
-export class Estudiante {
+export class Estudiante extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
