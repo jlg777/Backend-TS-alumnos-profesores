@@ -28,7 +28,7 @@ class EstudiantesControllers {
             res.status(201).json(registro);
         } catch (error: unknown) {
             if (error instanceof Error) {
-                console.error('Error al consultar los estudiantes:', error);
+                console.error('Error al ingresar los estudiantes:', error);
                 res.status(500).send(error.message);
             } else {
                 // En caso de que el error no sea una instancia de Error
@@ -88,7 +88,7 @@ class EstudiantesControllers {
                 throw new Error('Estudiante no encontrado');
             }
             await Estudiante.delete({ id: Number(id) });
-            res.status(204);
+            res.status(200).send('Estudiante borrado');
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error('Error al consultar los estudiantes:', error);
