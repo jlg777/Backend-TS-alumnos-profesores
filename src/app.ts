@@ -10,7 +10,8 @@ const app = express();
 app.use(morgan('dev'));
 // Habilitar CORS para todas las rutas
 app.use(cors());
-
+// Habilitar el middleware para analizar JSON en el cuerpo de la solicitud
+app.use(express.json());
 // Rutas
 app.get('/', (req: Request, res: Response) => {
     res.send('¡Hola Mundo!');
