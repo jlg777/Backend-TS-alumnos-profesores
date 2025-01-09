@@ -1,0 +1,19 @@
+{
+    "parser": "@typescript-eslint/parser",            // Usamos el parser de TypeScript
+    "plugins": ["@typescript-eslint"],                 // Habilitamos el plugin de TypeScript
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"          // Reglas recomendadas para TypeScript
+    ],
+    "env": {
+      "node": true,                                   // Entorno de Node.js
+      "es2021": true                                   // Uso de ECMAScript 2021
+    },
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",    // Otras reglas personalizadas
+      "@typescript-eslint/explicit-module-boundary-types": "off", // Si no quieres exigir tipos en las funciones públicas
+      "@typescript-eslint/ban-ts-comment": "off"             // Si no deseas que se marque el uso de comentarios `@ts-ignore`
+
+    }
+  }
+  
