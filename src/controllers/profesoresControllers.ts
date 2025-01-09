@@ -63,7 +63,7 @@ class ProfesoresControllers {
         try {
             const data = await Profesor.findOneBy({id: Number(id)});
             if (!data) {
-                throw new Error('Estudiante no encontrado');
+                throw new Error('Profesor no encontrado');
             }
             await Profesor.update({id: Number(id)}, req.body);
             const registroActualizado = await Profesor.findOneBy({id: Number(id)});
