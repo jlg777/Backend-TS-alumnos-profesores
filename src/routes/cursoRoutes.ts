@@ -5,6 +5,7 @@ const cursoRoutes = express.Router()
 cursoRoutes.get('/', cursoControllers.consultar)
 cursoRoutes.post('/', cursoControllers.ingresar)
 cursoRoutes.post('/registraEstudiante', cursoControllers.registrarestudiante)
+cursoRoutes.delete('/eliminarEstudianteDeCurso', cursoControllers.eliminarEstudianteDeCurso) 
 
 cursoRoutes.get('/:id', cursoControllers.consultarcurso)
 cursoRoutes.put('/:id', cursoControllers.actualizarcurso)
